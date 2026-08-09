@@ -1,8 +1,8 @@
 return {
-  "akinsho/bufferline.nvim",
+  "romgrk/barbar.nvim",
   version = "*",
   dependencies = "nvim-tree/nvim-web-devicons",
   config = function()
-    require("bufferline").setup({})
+    require("barbar").setup({})
   end,
 }
