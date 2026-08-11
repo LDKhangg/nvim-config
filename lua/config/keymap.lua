@@ -17,18 +17,20 @@ set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- spli
 set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 
-set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
+set("n", "<leader>to", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) -- go to next tab
 set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) -- go to previous tab
 set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) -- move current buffer to new tab
 
-set("n", "<leader>e", ":Neotree toggle<CR>")
-set("n", "<leader>ff", ":Telescope find_files<CR>")
-set("n", "<leader>fg", ":Telescope live_grep<CR>")
+set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle file explorer" })
+set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })
+set("n", "<leader>fr", ":Telescope oldfiles<CR>", { desc = "Recent files" })
+set("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Find text" })
 set("n", "<leader>fc", ":Telescope commands<CR>", { desc = "Command Palette" })
 
 -- barbar
+set("n", "<Tab>", "<Cmd>BufferNext<CR>", { desc = "Next buffer" })
+set("n", "<S-Tab>", "<Cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
 set("n", "<A-,>", "<Cmd>BufferPrevious<CR>", { desc = "Previous buffer" })
 set("n", "<A-.>", "<Cmd>BufferNext<CR>", { desc = "Next buffer" })
 set("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", { desc = "Move buffer left" })
@@ -63,9 +65,9 @@ set("n", "<leader>fm", function()
 end, { desc = "Format file" })
 
 -- terminal (toggleterm)
-set("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
-set("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Terminal vertical" })
-set("n", "<leader>ft", "<cmd>ToggleTerm direction=float<CR>", { desc = "Terminal float" })
+set("n", "<leader>ot", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
+set("n", "<leader>ov", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Terminal vertical" })
+set("n", "<leader>of", "<cmd>ToggleTerm direction=float<CR>", { desc = "Terminal float" })
 
 -- thoát + đóng terminal nhanh (jk trong terminal mode)
 set("t", "jk", function()

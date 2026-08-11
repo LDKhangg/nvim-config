@@ -23,14 +23,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
     opts.desc = "Code actions"
     keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
-    opts.desc = "Rename"
-    keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+    opts.desc = "Rename symbol"
+    keymap.set("n", "<leader>ln", vim.lsp.buf.rename, opts)
 
-    opts.desc = "Diagnostics buffer"
-    keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+    opts.desc = "Buffer diagnostics"
+    keymap.set("n", "<leader>xb", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
-    opts.desc = "Diagnostics line"
-    keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+    opts.desc = "Line diagnostics"
+    keymap.set("n", "<leader>xx", vim.diagnostic.open_float, opts)
 
     keymap.set("n", "[d", function()
       vim.diagnostic.jump({ count = -1, float = true })
@@ -71,4 +71,3 @@ vim.diagnostic.config({
     },
   },
 })
-

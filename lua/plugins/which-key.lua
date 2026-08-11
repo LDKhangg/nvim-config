@@ -7,6 +7,15 @@ return {
     wk.setup({})
     wk.add({
       { "<leader>b", group = "buffers" },
+      { "<leader>c", group = "code" },
+      { "<leader>d", group = "debug" },
+      { "<leader>f", group = "find" },
+      { "<leader>l", group = "lsp" },
+      { "<leader>o", group = "terminal" },
+      { "<leader>r", group = "run" },
+      { "<leader>s", group = "split" },
+      { "<leader>t", group = "tabs" },
+      { "<leader>x", group = "diagnostics" },
     })
   end,
 }
