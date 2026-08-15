@@ -28,27 +28,42 @@ return {
       local green = "#a9b665"
 
       local H = vim.api.nvim_set_hl
-      H(0, "NeoTreeNormal", { bg = "NONE", fg = fg0 })
-      H(0, "NeoTreeNormalNC", { bg = "NONE", fg = fg0 })
-      H(0, "NeoTreeEndOfBuffer", { bg = "NONE", fg = bg0 })
-      H(0, "NeoTreeWinSeparator", { bg = "NONE", fg = bg1 })
-      H(0, "NeoTreeCursorLine", { bg = bg1 })
-      H(0, "NeoTreeDirectoryName", { fg = orange })
-      H(0, "NeoTreeDirectoryIcon", { fg = orange })
-      H(0, "NeoTreeRootName", { fg = fg0, bold = true })
-      H(0, "NeoTreeFileName", { fg = fg0 })
-      H(0, "NeoTreeFileNameOpened", { fg = fg1 })
-      H(0, "NeoTreeFileIcon", { fg = grey1 })
-      H(0, "NeoTreeDimText", { fg = grey1 })
-      H(0, "NeoTreeHiddenByName", { fg = grey1 })
-      H(0, "NeoTreeIndentMarker", { fg = bg3 })
-      H(0, "NeoTreeExpander", { fg = orange })
-      H(0, "NeoTreeGitAdded", { fg = green })
-      H(0, "NeoTreeGitModified", { fg = yellow })
-      H(0, "NeoTreeGitDeleted", { fg = red })
-      H(0, "NeoTreeFloatBorder", { fg = bg3, bg = "NONE" })
-      H(0, "NeoTreeFloatTitle", { fg = bg0, bg = orange, bold = true })
-      H(0, "NeoTreeTitleBar", { fg = fg0, bg = "NONE", bold = true })
+      local function apply_neotree()
+        H(0, "NeoTreeNormal", { bg = "NONE", fg = fg0 })
+        H(0, "NeoTreeNormalNC", { bg = "NONE", fg = fg0 })
+        H(0, "NeoTreeEndOfBuffer", { bg = "NONE", fg = bg0 })
+        H(0, "NeoTreeWinSeparator", { bg = "NONE", fg = bg1 })
+        H(0, "NeoTreeCursorLine", { bg = bg1 })
+        H(0, "NeoTreeDirectoryName", { fg = orange })
+        H(0, "NeoTreeDirectoryIcon", { fg = orange })
+        H(0, "NeoTreeRootName", { fg = fg0, bold = true })
+        H(0, "NeoTreeFileName", { fg = fg0 })
+        H(0, "NeoTreeFileNameOpened", { fg = fg1 })
+        H(0, "NeoTreeFileIcon", { fg = grey1 })
+        H(0, "NeoTreeDimText", { fg = grey1 })
+        H(0, "NeoTreeHiddenByName", { fg = grey1 })
+        H(0, "NeoTreeIndentMarker", { fg = bg3 })
+        H(0, "NeoTreeExpander", { fg = orange })
+        H(0, "NeoTreeGitAdded", { fg = green })
+        H(0, "NeoTreeGitModified", { fg = yellow })
+        H(0, "NeoTreeGitDeleted", { fg = red })
+        H(0, "NeoTreeFloatBorder", { fg = bg3, bg = "NONE" })
+        H(0, "NeoTreeFloatTitle", { fg = bg0, bg = orange, bold = true })
+        H(0, "NeoTreeTitleBar", { fg = fg0, bg = "NONE", bold = true })
+      end
+
+      -- gruvbox-material kèm after/syntax/neo-tree ghi đè các group này
+      -- khi tree mở; vim.schedule defer để re-apply sau khi after/syntax xong
+      local ns = vim.api.nvim_create_augroup("GruvboxNeoTree", { clear = true })
+      vim.api.nvim_create_autocmd({ "BufEnter", "FileType" }, {
+        group = ns,
+        pattern = "neo-tree*",
+        callback = function()
+          vim.schedule(apply_neotree)
+        end,
+      })
+
+      apply_neotree()
     end,
   },
 }
