@@ -51,7 +51,6 @@ return {
         "-XX:GCTimeRatio=4",
         "-XX:AdaptiveSizePolicyWeight=90",
         "-javaagent:" .. jdtls_path .. "/lombok.jar",
-        "-Xbootclasspath/p:" .. jdtls_path .. "/lombok.jar",
         "--add-modules=ALL-SYSTEM",
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
@@ -88,11 +87,6 @@ return {
       },
     }
 
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "java",
-      callback = function()
-        require("jdtls").start_or_attach(config)
-      end,
-    })
+    require("jdtls").start_or_attach(config)
   end,
 }
