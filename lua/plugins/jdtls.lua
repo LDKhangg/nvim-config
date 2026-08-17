@@ -58,7 +58,7 @@ return {
       settings = {
         java = {
           eclipse = { downloadSources = true },
-          configuration = { updateBuildConfiguration = "interactive" },
+          configuration = { updateBuildConfiguration = "automatic" },
           maven = { downloadSources = true },
           implementationsCodeLens = { enabled = true },
           referencesCodeLens = { enabled = true },
