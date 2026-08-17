@@ -46,6 +46,7 @@ return {
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
         "-Xmx2g",
+        "-javaagent:" .. jdtls_path .. "/lombok.jar",
         "--add-modules=ALL-SYSTEM",
         "--add-opens", "java.base/java.util=ALL-UNNAMED",
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
