@@ -22,6 +22,21 @@ return {
       vim.list_extend(bundles, spring_boot.java_extensions())
     end
 
+    local function get_root_dir()
+      local fname = vim.api.nvim_buf_get_name(0)
+      local current_dir = fname ~= "" and vim.fs.dirname(fname) or vim.fn.getcwd()
+      local root = vim.fs.find({ ".git", "mvnw", "gradlew" }, { path = current_dir, upward = true })[1]
+      if root then
+        return vim.fs.dirname(root)
+      end
+      root = vim.fs.find({ "pom.xml", "build.gradle" }, { path = current_dir, upward = true })[1]
+      return root and vim.fs.dirname(root) or vim.fn.getcwd()
+    end
+
+    local root_dir = get_root_dir()
+    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+    local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. project_name
+
     local config = {
       cmd = {
         "java",
@@ -36,9 +51,9 @@ return {
         "--add-opens", "java.base/java.lang=ALL-UNNAMED",
         "-jar", vim.fn.glob(jdtls_path .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
         "-configuration", jdtls_path .. "/config_linux",
-        "-data", vim.fn.stdpath("cache") .. "/jdtls/workspace" .. vim.fn.getcwd(),
+        "-data", workspace_dir,
       },
-      root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
+      root_dir = root_dir,
       settings = {
         java = {
           eclipse = { downloadSources = true },
