@@ -17,6 +17,7 @@ return {
       { "<leader>s", group = "split" },
       { "<leader>t", group = "tabs" },
       { "<leader>x", group = "diagnostics" },
+      { "<leader>j", group = "java" },
     })
 
     wk.add({
@@ -27,6 +28,10 @@ return {
       { "<leader>gh", desc = "File history" },
       { "<leader>gc", desc = "Close diffview" },
       { "<leader>gg", desc = "Lazygit" },
+      { "<leader>ji", desc = "Spring Initializr" },
+      { "<leader>jo", desc = "Organize Imports" },
+      { "<leader>jv", desc = "Test Java Class" },
+      { "<leader>jm", desc = "Test Nearest Method" },
     })
   end,
 }
