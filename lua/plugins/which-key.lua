@@ -18,5 +18,15 @@ return {
       { "<leader>t", group = "tabs" },
       { "<leader>x", group = "diagnostics" },
     })
+
+    wk.add({
+      { "<leader>u", desc = "Undo tree" },
+      { "<leader>fy", desc = "Yank history" },
+      { "<leader>ft", desc = "Find TODO comments" },
+      { "<leader>gd", desc = "Git diff" },
+      { "<leader>gh", desc = "File history" },
+      { "<leader>gc", desc = "Close diffview" },
+      { "<leader>gg", desc = "Lazygit" },
+    })
   end,
 }
