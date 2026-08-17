@@ -34,8 +34,9 @@ return {
     end
 
     local root_dir = get_root_dir()
-    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
-    local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. project_name
+    local project_name = vim.fn.fnamemodify(root_dir, ":t")
+    local project_key = vim.fn.sha256(vim.fn.fnamemodify(root_dir, ":p")):sub(1, 12)
+    local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. project_name .. "-" .. project_key
 
     local config = {
       cmd = {
