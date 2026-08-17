@@ -48,6 +48,9 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- undo persists across sessions (dùng chung với undotree)
+opt.undofile = true
+
 -- keymap chờ prefix nhanh (tránh lag khi gõ <leader>r, <leader>d...)
 opt.timeoutlen = 300
 
