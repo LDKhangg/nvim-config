@@ -109,5 +109,6 @@ set("n", "<leader>du", function()
 -- Java & Spring Boot
 set("n", "<leader>jr", "<cmd>SpringBootRun<CR>", { desc = "Run Spring Boot App" })
 set("n", "<leader>jo", function() require("jdtls").organize_imports() end, { desc = "Organize Imports" })
+set("n", "<leader>ju", function() require("jdtls").update_project_config() end, { desc = "Update Project Config" })
 set("n", "<leader>jv", function() require("jdtls").test_class() end, { desc = "Run Java Test Class" })
 set("n", "<leader>jm", function() require("jdtls").test_nearest_method() end, { desc = "Run Nearest Test Method" })

@@ -30,6 +30,7 @@ return {
       { "<leader>gg", desc = "Lazygit" },
       { "<leader>jr", desc = "Run Spring Boot App" },
       { "<leader>jo", desc = "Organize Imports" },
+      { "<leader>ju", desc = "Update Project Config" },
       { "<leader>jv", desc = "Test Java Class" },
       { "<leader>jm", desc = "Test Nearest Method" },
     })
