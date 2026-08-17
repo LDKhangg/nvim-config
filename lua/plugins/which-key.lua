@@ -28,7 +28,7 @@ return {
       { "<leader>gh", desc = "File history" },
       { "<leader>gc", desc = "Close diffview" },
       { "<leader>gg", desc = "Lazygit" },
-      { "<leader>ji", desc = "Spring Initializr" },
+      { "<leader>jr", desc = "Run Spring Boot App" },
       { "<leader>jo", desc = "Organize Imports" },
       { "<leader>jv", desc = "Test Java Class" },
       { "<leader>jm", desc = "Test Nearest Method" },

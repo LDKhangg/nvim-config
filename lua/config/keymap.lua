@@ -107,7 +107,7 @@ set("n", "<leader>du", function()
   end, { desc = "Toggle DAP UI" })
 
 -- Java & Spring Boot
-set("n", "<leader>ji", "<cmd>Springtime<CR>", { desc = "Spring Initializr (Springtime)" })
+set("n", "<leader>jr", "<cmd>SpringBootRun<CR>", { desc = "Run Spring Boot App" })
 set("n", "<leader>jo", function() require("jdtls").organize_imports() end, { desc = "Organize Imports" })
 set("n", "<leader>jv", function() require("jdtls").test_class() end, { desc = "Run Java Test Class" })
 set("n", "<leader>jm", function() require("jdtls").test_nearest_method() end, { desc = "Run Nearest Test Method" })
