@@ -10,6 +10,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = {
           "gopls",
+          "kotlin-language-server",
           "lua_ls",
           "pyright",
           "ts_ls",
@@ -37,7 +38,7 @@ return {
         },
       })
 
-      vim.lsp.enable({ "gopls", "lua_ls", "pyright", "ts_ls" })
+      vim.lsp.enable({ "gopls", "kotlin_language_server", "lua_ls", "pyright", "ts_ls" })
     end,
   },
 }
