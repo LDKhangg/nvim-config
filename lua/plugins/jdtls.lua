@@ -46,7 +46,7 @@ return {
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
-        "-Xmx8g",
+        "-Xmx4g",
         "-XX:+UseParallelGC",
         "-XX:GCTimeRatio=4",
         "-XX:AdaptiveSizePolicyWeight=90",
