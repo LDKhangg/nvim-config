@@ -72,16 +72,23 @@ return {
         "-data", workspace_dir,
       },
       root_dir = root_dir,
-      settings = {
-        java = {
-          eclipse = { downloadSources = true },
-          configuration = { updateBuildConfiguration = "automatic" },
-          maven = { downloadSources = true },
-          implementationsCodeLens = { enabled = true },
-          referencesCodeLens = { enabled = true },
-          references = { includeDecompiledSources = true },
+        settings = {
+          java = {
+            eclipse = { downloadSources = true },
+            configuration = { updateBuildConfiguration = "automatic" },
+            maven = { downloadSources = true },
+            implementationsCodeLens = { enabled = true },
+            referencesCodeLens = { enabled = true },
+            references = { includeDecompiledSources = true },
+            import = {
+              gradle = {
+                enabled = true,
+                wrapper = { enabled = true },
+                home = "/home/kane/.gradle/wrapper/dists/gradle-9.2.1-bin/2t0n5ozlw9xmuyvbp7dnzaxug/gradle-9.2.1",
+              },
+            },
+          },
         },
-      },
       init_options = {
         bundles = bundles,
       },
