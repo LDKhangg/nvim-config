@@ -84,7 +84,6 @@ return {
               gradle = {
                 enabled = true,
                 wrapper = { enabled = true },
-                home = "/home/kane/.gradle/wrapper/dists/gradle-9.2.1-bin/2t0n5ozlw9xmuyvbp7dnzaxug/gradle-9.2.1",
               },
             },
           },
