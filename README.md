@@ -85,6 +85,13 @@ Leader key: `<Space>`
 - `<leader>rq` stop `air`
 - `<leader>rt` run Go test panel
 
+### Markdown & Mindmap
+
+- `<leader>mo` open mindmap once (Markmap)
+- `<leader>mw` watch mindmap live (Markmap Watch)
+- `<leader>ms` stop watching mindmap
+- `<leader>mx` open Excalidraw freeform drawing in Zen Browser
+
 ### LSP / Diagnostics
 
 - `<leader>ca` code actions

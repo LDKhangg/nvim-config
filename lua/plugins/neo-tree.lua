@@ -38,6 +38,15 @@ return {
           enabled = true, -- Tự động focus và expand đến file đang mở
           leave_dirs_open = true,
         },
+        filtered_items = {
+          visible = true, -- Hiển thị các file/folder ẩn (.)
+          hide_dotfiles = false,
+          hide_gitignored = false,
+          never_show = {
+            ".DS_Store",
+            "thumbs.db",
+          },
+        },
       },
     })
   end,
