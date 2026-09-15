@@ -7,7 +7,8 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     ft = { "go", "gomod" },
-    -- build = ':lua require("go.install").update_all_sync()',
+    -- tự cài tools phụ (gomodifytags/impl/gotests/...) khi cài hoặc update plugin
+    build = ':lua require("go.install").update_all_sync()',
     config = function()
       require("go").setup({
         -- gopls do mình tự quản trong plugins/lsp.lua -> tắt để khỏi conflict
