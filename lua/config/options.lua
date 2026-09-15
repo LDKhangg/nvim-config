@@ -2,7 +2,7 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
-opt.relativenumber = true
+opt.relativenumber = true -- số nhảy theo cursor (44j/12k nhanh), dòng cursor vẫn hiện số tuyệt đối
 opt.number = true
 
 -- tabs & indentation
@@ -28,12 +28,14 @@ opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 opt.cursorline = true
+opt.showtabline = 2 -- luôn hiện tabline barbar (kể cả 1 buffer, dashboard)
 
 -- turn on termguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
-opt.signcolumn = "yes" -- show sign column so that text doesn't shift
+opt.signcolumn = "yes:1" -- chỉ chừa đúng 1 cell cho sign (không cho giãn), text không nhảy
+opt.numberwidth = 2 -- cột số chỉ chừa tối thiểu 2 ký tự (mặc định 4 nên gutter rộng)
 
 -- backspace
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
@@ -56,3 +58,15 @@ opt.timeoutlen = 300
 
 -- CursorHold (auto float diagnostic) fire sớm; mặc định 4000ms là quá lâu
 opt.updatetime = 250
+
+-- Tự reload file khi bị sửa từ bên ngoài (agent AI, git checkout...)
+-- nếu không có cái này thì buffer giữ nội dung cũ, phải :e! / đóng mở tab
+opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
+  callback = function()
+    if vim.fn.getcmdwintype() == "" then
+      vim.cmd("checktime")
+    end
+  end,
+  desc = "Auto-reload file changed outside nvim",
+})

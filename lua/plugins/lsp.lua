@@ -33,6 +33,31 @@ return {
             },
             staticcheck = false,
             gofumpt = true,
+            -- test lẻ / refactor: điền param, import chưa có
+            usePlaceholders = true,
+            completeUnimported = true,
+            deepCompletion = true,
+            matcher = "Fuzzy",
+            -- codelens: nút run test / tidy / vendor inline
+            codelenses = {
+              generate = true,
+              gc_details = false,
+              test = true,
+              tidy = true,
+              vendor = true,
+              regenerate_cgo = true,
+              upgrade_dependency = true,
+            },
+            -- inlay hints: hiện type param, composite field
+            hints = {
+              assignVariableTypes = true,
+              compositeLiteralFields = true,
+              compositeLiteralTypes = true,
+              constantValues = true,
+              functionTypeParameters = true,
+              parameterNames = true,
+              rangeVariableTypes = true,
+            },
           },
         },
       })

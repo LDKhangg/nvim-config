@@ -42,6 +42,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
+    -- inlay hints + codelens cho Go (gopls đã bật hints/codelens ở plugins/lsp.lua)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if client and client:supports_method("textDocument/inlayHint") then
+      vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+    end
+    if client and client:supports_method("textDocument/codeLens") then
+      vim.lsp.codelens.enable(true, { bufnr = ev.buf })
+      vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
+        buffer = ev.buf,
+        callback = function()
+          vim.lsp.codelens.enable(true, { bufnr = ev.buf })
+        end,
+      })
+      keymap.set("n", "<leader>cl", vim.lsp.codelens.run, { buffer = ev.buf, silent = true, desc = "Run codelens" })
+    end
+
     -- auto-show float diagnostic khi trỏ đứng yên trên dòng có lỗi
     vim.api.nvim_create_autocmd("CursorHold", {
       buffer = ev.buf,
@@ -62,6 +78,21 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
+  -- hiện lỗi inline cuối dòng luôn (không cần đợi cursor tới)
+  virtual_text = {
+    prefix = "■ ",
+    spacing = 2,
+    source = false,
+    severity = { min = severity.WARN },
+  },
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = {
+    border = "rounded",
+    source = "always",
+    prefix = " ",
+  },
   signs = {
     text = {
       [severity.ERROR] = " ",
@@ -71,3 +102,6 @@ vim.diagnostic.config({
     },
   },
 })
+
+-- NOTE: màu nền chữ lỗi inline nằm trong lua/plugins/colorscheme.lua (apply_diag)
+-- vì colorscheme load sau và ghi đè highlight nếu để ở đây

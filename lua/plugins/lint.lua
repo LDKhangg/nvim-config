@@ -10,7 +10,8 @@ return {
       python = { "flake8" },
     }
 
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+    -- Chỉ lint khi save: golangcilint rất nặng, chạy mỗi InsertLeave/BufEnter gây lag
+    vim.api.nvim_create_autocmd({ "BufWritePost" }, {
       group = vim.api.nvim_create_augroup("UserLintConfig", {}),
       callback = function()
         lint.try_lint()

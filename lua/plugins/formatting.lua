@@ -24,7 +24,7 @@ return {
       },
       format_on_save = {
         lsp_fallback = true,
-        async = false,
+        async = true, -- không block UI mỗi lần save (cũ async=false đứng hình tới 3s)
         timeout_ms = 3000,
       },
     })

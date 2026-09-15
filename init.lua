@@ -32,6 +32,6 @@ require("lazy").setup({
   spec = {
     { import = "plugins" }, -- Tự động load mọi file .lua trong thư mục plugins
   },
-  -- Tự động kiểm tra cập nhật cho ông luôn
-  checker = { enabled = true },
+  -- Tắt tự check update nền (gây spike mạng/CPU, lag random); cần thì :Lazy update tay
+  checker = { enabled = false },
 })
