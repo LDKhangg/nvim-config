@@ -68,14 +68,39 @@ set("n", "<leader>fm", function()
 end, { desc = "Format file" })
 
 -- Go/Agent: reload sau khi AI sửa file ngoài nvim (go.mod, thêm file, rename)
--- <leader>rr = checktime (reload buffer) + LspRestart gopls (xóa lỗi ảo)
+-- <leader>rr = checktime (reload buffer) + restart LSP (xóa lỗi ảo)
 -- <leader>lr = restart LSP nhẹ (không reload buffer)
+-- NOTE: config dùng vim.lsp.config/enable (0.11+) nên nvim-lspconfig không còn
+-- tạo lệnh :LspRestart nữa (E492) — restart bằng API builtin thay thế.
+local function restart_buffer_lsp()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clients = vim.lsp.get_clients({ bufnr = bufnr })
+  if #clients == 0 then
+    vim.notify("No LSP client attached", vim.log.levels.WARN)
+    return
+  end
+  -- Xóa diagnostic đang hiển thị ngay (Neovim không tự xóa khi client stop).
+  vim.diagnostic.reset(nil, bufnr)
+  for _, c in ipairs(clients) do
+    c:stop(true)
+  end
+  -- Chờ gopls cũ thoát hẳn rồi mới :edit start lại.
+  -- Không chờ = 2 gopls giẫm nhau, con zombie giữ diagnostic cũ.
+  vim.defer_fn(function()
+    if vim.api.nvim_buf_is_valid(bufnr) then
+      vim.api.nvim_buf_call(bufnr, function()
+        vim.cmd("edit")
+      end)
+    end
+  end, 500)
+end
+
 set("n", "<leader>rr", function()
   vim.cmd("checktime")
-  vim.cmd("LspRestart gopls")
-  vim.notify("Reloaded + gopls restarted", vim.log.levels.INFO)
-end, { desc = "Reload files + restart gopls (after Agent)" })
-set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
+  restart_buffer_lsp()
+  vim.notify("Reloaded + LSP restarted", vim.log.levels.INFO)
+end, { desc = "Reload files + restart LSP (after Agent)" })
+set("n", "<leader>lr", restart_buffer_lsp, { desc = "Restart LSP" })
 
 -- terminal (toggleterm)
 set("n", "<leader>ot", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
