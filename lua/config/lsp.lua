@@ -42,11 +42,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-    -- inlay hints + codelens cho Go (gopls đã bật hints/codelens ở plugins/lsp.lua)
+    -- inlay hints tắt mặc định (khó chịu) — bật tay bằng <leader>th khi cần
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client and client:supports_method("textDocument/inlayHint") then
-      vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+      vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
     end
+    keymap.set("n", "<leader>th", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+    end, { buffer = ev.buf, silent = true, desc = "Toggle inlay hints" })
     if client and client:supports_method("textDocument/codeLens") then
       vim.lsp.codelens.enable(true, { bufnr = ev.buf })
       vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {

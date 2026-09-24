@@ -14,7 +14,7 @@ return {
         -- gopls do mình tự quản trong plugins/lsp.lua -> tắt để khỏi conflict
         lsp_cfg = false,
         lsp_gofumpt = true,
-        lsp_inlay_hints = { enable = true },
+        lsp_inlay_hints = { enable = false },
         -- dùng -tags=exercise cho đồng bộ test panel / neotest
         test_runner = "go",
         run_in_floaterm = false,

@@ -33,8 +33,8 @@ return {
             },
             staticcheck = false,
             gofumpt = true,
-            -- test lẻ / refactor: điền param, import chưa có
-            usePlaceholders = true,
+            -- tắt tự điền placeholder param khi accept completion (khó chịu)
+            usePlaceholders = false,
             completeUnimported = true,
             deepCompletion = true,
             matcher = "Fuzzy",
