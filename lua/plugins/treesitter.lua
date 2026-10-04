@@ -29,7 +29,7 @@ return {
       callback = function()
         pcall(vim.treesitter.start)
         if vim.tbl_contains({ "go", "gomod", "gowork" }, vim.bo.filetype) then
-          vim.bo.indentexpr = "v:lua.require'config.indent'.go_indent()"
+          vim.bo.indentexpr = "v:lua.require'config.go-indent'.go_indent()"
         end
       end,
     })

@@ -29,12 +29,7 @@ return {
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-      conform.format({
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 1000,
-      })
-    end, { desc = "Format file or range (in visual mode)" })
+    -- NOTE: format tay bằng <leader>fm (lua/config/keymap.lua, hỗ trợ cả visual),
+    -- không map <leader>mp trùng chức năng ở đây.
   end,
 }

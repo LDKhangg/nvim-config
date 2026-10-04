@@ -15,7 +15,7 @@ return {
         ignore_registers = { "_" },
       },
       picker = {
-        select = { "telescope", "fzf_lua" },
+        select = { "telescope" },
         telescope = {
           mappings = {
             default = require("yanky.telescope.mapping").put("p"),

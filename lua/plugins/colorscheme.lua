@@ -11,7 +11,7 @@ return {
         show_end_of_buffer = false,
         term_colors = true,
         integrations = {
-          cmp = true,
+          blink_cmp = true,
           gitsigns = true,
           neotree = true,
           treesitter = true,

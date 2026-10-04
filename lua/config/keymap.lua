@@ -23,10 +23,8 @@ set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) -- go t
 set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) -- move current buffer to new tab
 
 set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle file explorer" })
-set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })
-set("n", "<leader>fr", ":Telescope oldfiles<CR>", { desc = "Recent files" })
-set("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Find text" })
-set("n", "<leader>fc", ":Telescope commands<CR>", { desc = "Command Palette" })
+-- NOTE: phím Telescope (ff/fa/fg/fr/fc) nằm gọn trong lua/plugins/telescope.lua,
+-- không map ở đây để tránh đè nhau.
 
 -- barbar
 set("n", "<Tab>", "<Cmd>BufferNext<CR>", { desc = "Next buffer" })
@@ -59,11 +57,9 @@ set("n", "<leader>b0", "<Cmd>BufferLast<CR>", { desc = "Last buffer" })
 
 set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
 set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
-set('n', '<c-k>', ':wincmd k<CR>')
-set('n', '<c-j>', ':wincmd j<CR>')
-set('n', '<c-h>', ':wincmd h<CR>')
-set('n', '<c-l>', ':wincmd l<CR>')
-set("n", "<leader>fm", function()
+-- NOTE: C-h/j/k/l (normal mode) do vim-tmux-navigator giữ
+-- (xem lua/plugins/nvim-tmux-navigator.lua), không map :wincmd ở đây.
+set({ "n", "v" }, "<leader>fm", function()
   require("conform").format()
 end, { desc = "Format file" })
 
@@ -143,10 +139,3 @@ end, { desc = "Step out" })
 set("n", "<leader>du", function()
     require("dapui").toggle()
   end, { desc = "Toggle DAP UI" })
-
--- Java & Spring Boot
-set("n", "<leader>jr", "<cmd>SpringBootRun<CR>", { desc = "Run Spring Boot App" })
-set("n", "<leader>jo", function() require("jdtls").organize_imports() end, { desc = "Organize Imports" })
-set("n", "<leader>ju", function() require("jdtls").update_project_config() end, { desc = "Update Project Config" })
-set("n", "<leader>jv", function() require("jdtls").test_class() end, { desc = "Run Java Test Class" })
-set("n", "<leader>jm", function() require("jdtls").test_nearest_method() end, { desc = "Run Nearest Test Method" })

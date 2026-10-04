@@ -15,9 +15,8 @@ return {
       { "<leader>o", group = "terminal" },
       { "<leader>r", group = "run" },
       { "<leader>s", group = "split" },
-      { "<leader>t", group = "tabs" },
+      { "<leader>t", group = "test/tabs" },
       { "<leader>x", group = "diagnostics" },
-      { "<leader>j", group = "java" },
     })
 
     wk.add({
@@ -28,11 +27,6 @@ return {
       { "<leader>gh", desc = "File history" },
       { "<leader>gc", desc = "Close diffview" },
       { "<leader>gg", desc = "Lazygit" },
-      { "<leader>jr", desc = "Run Spring Boot App" },
-      { "<leader>jo", desc = "Organize Imports" },
-      { "<leader>ju", desc = "Update Project Config" },
-      { "<leader>jv", desc = "Test Java Class" },
-      { "<leader>jm", desc = "Test Nearest Method" },
     })
   end,
 }
